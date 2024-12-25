@@ -3,13 +3,14 @@ on:
   push:
     branches: [main]
 
+  # to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: action/checkout@v2
         with:
           fetch-depth: 0
       - name: Add remote
@@ -17,4 +18,6 @@ jobs:
           HF: ${{ secrets.HF }}
         run: git remote add space https://akintaylor:$HF@huggingface.co/spaces/akintaylor/demo
       - name: Push to hub
+        env:
+          HF: ${{ secrets.HF }}
         run: git push --force space main
