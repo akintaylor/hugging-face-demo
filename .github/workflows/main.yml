@@ -18,6 +18,4 @@ jobs:
           HF: ${{ secrets.HF }}
         run: git remote add space https://akintaylor:$HF@huggingface.co/spaces/akintaylor/demo
       - name: Push to hub
-        env:
-          HF: ${{ secrets.HF }}
         run: git push --force space main
